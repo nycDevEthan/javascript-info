@@ -95,3 +95,112 @@ function multiplyNumeric(obj) {
         }
     }
 }
+
+// Ethan O'Connell 6/19/22
+// https://javascript.info/object-copy
+// Example code practice - typed out in VS Studio Code and tested in Chrome console
+
+let message = "Hello";
+let phrase = message;
+
+let user = {
+    name: "John"
+};
+
+let user = { name: "John" };
+let admin = user; 
+
+let user = { name: 'John' };
+let admin = user;
+admin.name = 'Pete';
+alert(user.name);
+
+let a = {};
+let b = a;
+
+alert (a == b);
+alert (a === b);
+
+let a = {};
+let b = {};
+
+alert (a == b);
+
+let user = {
+    name: "John",
+    age: 30
+};
+
+let clone = {};
+
+for (let key in user) {
+    clone[key] = user[key];
+}
+
+clone.name = 'Pete';
+
+alert (user.name);
+
+//Object.assign
+
+let user = { name: 'John' };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+Object.assign(user, permissions1, permissions2);
+
+let user = { name: 'John' };
+
+Object.assign(user, { name: 'Pete' });
+
+alert ( user.name );
+
+let user = {
+    name: 'John',
+    age: 30
+};
+
+let clone = Object.assign({}, user);
+
+let user = {
+    name: 'John',
+    sizes: {
+        height: 182,
+        width: 50
+    }
+};
+
+alert ( user.sizes.height );
+
+//
+
+let user = {
+    name: 'John',
+    sizes: {
+        height: 182,
+        width: 50
+    }
+};
+
+let clone = Object.assign({}, user);
+
+alert ( user.sizes === clone.sizes);
+
+user.sizes.width++;
+alert(clone.sizes.width);
+
+var objects = [{ 'a': 1}, { 'b': 2}];
+
+var deep = _.cloneDeep(objects);
+console.log(deep[0] === objects[0]);
+
+//
+
+const user = {
+    name: 'John'
+};
+
+user.name = 'Pete';
+
+alert(user.name);
