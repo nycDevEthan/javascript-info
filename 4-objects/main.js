@@ -1,18 +1,22 @@
-// Ethan O'Connell
-// https://javascript.info/object#tasks
+// Ethan O'Connell - 6/19/22
+// Reading through entire https://javascript.info/object-basics chapter and doing tasks.  Went through this section again for review and practice.
+// https://javascript.info/object
+// Tasks
+
 // Hello, object
 // importance: 5
 // Write the code, one line for each action:
 
 // Create an empty object user.
-let user = {};
 // Add the property name with the value John.
-user.name = "John";
 // Add the property surname with the value Smith.
-user.surname = "Smith";
 // Change the value of the name to Pete.
-user.name = "Pete";
 // Remove the property name from the object.
+
+let user = {};
+user.name = "John";
+user.surname = "Smith";
+user.name = "Pete";
 delete user.name;
 
 // Check for emptiness
@@ -33,6 +37,7 @@ function isEmpty(obj) {
     for (let key in obj) {
         return false;
     }
+
     return true;
 }
 
@@ -52,6 +57,7 @@ function isEmpty(obj) {
 function sumSalaries(obj) {
     let sum = 0;
     for (let key in obj) {
+        console.log(obj[key]);
         sum += obj[key];
     }
     return sum;
@@ -84,8 +90,160 @@ function sumSalaries(obj) {
 
 function multiplyNumeric(obj) {
     for (let key in obj) {
-        if (typeof obj[key] === 'number') {
+        if (typeof(obj[key]) === "number") {
             obj[key] *= 2;
         }
     }
 }
+
+// Ethan O'Connell 6/19/22
+// https://javascript.info/object-copy
+// Example code practice - typed out in VS Studio Code and tested in Chrome console
+
+let message = "Hello";
+let phrase = message;
+
+let user = {
+    name: "John"
+};
+
+let user = { name: "John" };
+let admin = user; 
+
+let user = { name: 'John' };
+let admin = user;
+admin.name = 'Pete';
+alert(user.name);
+
+let a = {};
+let b = a;
+
+alert (a == b);
+alert (a === b);
+
+let a = {};
+let b = {};
+
+alert (a == b);
+
+let user = {
+    name: "John",
+    age: 30
+};
+
+let clone = {};
+
+for (let key in user) {
+    clone[key] = user[key];
+}
+
+clone.name = 'Pete';
+
+alert (user.name);
+
+//Object.assign
+
+let user = { name: 'John' };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+Object.assign(user, permissions1, permissions2);
+
+let user = { name: 'John' };
+
+Object.assign(user, { name: 'Pete' });
+
+alert ( user.name );
+
+let user = {
+    name: 'John',
+    age: 30
+};
+
+let clone = Object.assign({}, user);
+
+let user = {
+    name: 'John',
+    sizes: {
+        height: 182,
+        width: 50
+    }
+};
+
+alert ( user.sizes.height );
+
+//
+
+let user = {
+    name: 'John',
+    sizes: {
+        height: 182,
+        width: 50
+    }
+};
+
+let clone = Object.assign({}, user);
+
+alert ( user.sizes === clone.sizes);
+
+user.sizes.width++;
+alert(clone.sizes.width);
+
+var objects = [{ 'a': 1}, { 'b': 2}];
+
+var deep = _.cloneDeep(objects);
+console.log(deep[0] === objects[0]);
+
+//
+
+const user = {
+    name: 'John'
+};
+
+user.name = 'Pete';
+
+alert(user.name);
+
+// Ethan O'Connell 6/20/22
+// https://javascript.info/garbage-collection
+// Example code practice - typed out in VS Studio Code and tested in Chrome console
+
+let user = {
+    name: "John"
+};
+
+//
+
+let user = {
+    name: "John"
+};
+
+let admin = user;
+
+user = null;
+
+//
+
+function marry(man, woman) {
+    woman.husband = man;
+    man.wife = woman;
+
+    return {
+        father: man,
+        mother: woman
+    }
+}
+
+let family = marry({
+    name: "John"
+}, {
+    name: "Ann"
+});
+
+delete family.father;
+delete family.mother.husband;
+
+//
+
+family = null;
