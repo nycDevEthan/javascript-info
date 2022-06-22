@@ -246,4 +246,187 @@ delete family.mother.husband;
 
 //
 
+<<<<<<< HEAD
 family = null;
+=======
+family = null;
+
+// Ethan O'Connell 6/21/22
+// https://javascript.info/object-methods
+// Example code practice - typed out in VS Studio Code and tested in Chrome console
+// Tasks after example code
+let user = {
+    name: "John",
+    age: 30
+};
+
+//
+
+let user = {
+    name: "John",
+    age: 30
+};
+
+user.sayHi = function() {
+    alert("Hello!");
+};
+
+user.sayHi();
+
+// 
+
+let user = {
+
+};
+
+function sayHi() {
+    alert("Hello!");
+}
+
+user.sayHi = sayHi;
+
+user.sayHi();
+
+//
+
+user = {
+    sayHi: function() {
+        alert("Hello");
+    }
+};
+
+user = {
+    sayHi() {
+        alert("Hello");
+    }
+};
+
+//
+
+let user = {
+    name: "John",
+    age: 30,
+
+    sayHi() {
+        alert(this.name);
+    }
+};
+
+// 
+
+let user = {
+    name: "John",
+    age: 30,
+
+    sayHi() {
+        alert(user.name);
+    }
+
+};
+
+//
+
+// let user = {
+//     name: "John",
+//     age: 30,
+
+//     sayHi() {
+//         alert( user.name ); // error
+//     }
+
+// };
+
+let user = {
+    name: "John",
+    age: 30,
+
+    sayHi() {
+        alert( this.name ); // works
+    }
+
+};
+
+let admin = user;
+user = null;
+
+admin.sayHi();
+
+//
+
+function sayHi() {
+    alert(this.name);
+}
+
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+function sayHi() {
+    alert (this.name);
+}
+
+user.f = sayHi;
+admin.f = sayHi;
+
+user.f();
+admin.f();
+
+admin['f']();
+
+//
+
+function sayHi() {
+    alert(this);
+}
+
+sayHi();
+
+//
+
+let user = {
+    firstName: "Ilya",
+    sayHi() {
+        let arrow = () => alert(this.firstName);
+        arrow();
+    }
+};
+
+user.sayHi();
+
+// Tasks
+// https://javascript.info/object-methods#tasks
+// Using "this" in object literal
+// importance: 5
+// Here the function makeUser returns an object.
+
+// What is the result of accessing its ref? Why?
+
+function makeUser() {
+  return {
+    name: "John",
+    ref: this
+  };
+}
+
+let user = makeUser();
+
+alert( user.ref.name ); // What's the result?
+
+function makeUser() {
+    return this;
+}
+
+alert (makeUser().name);
+
+function makeUser() {
+    return {
+        name: "John",
+        ref() {
+            return this;
+        }
+    };
+}
+
+let user = makeUser();
+
+alert (user.ref().name);
+>>>>>>> 4-4-object-methods
