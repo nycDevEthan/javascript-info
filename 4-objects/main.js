@@ -246,9 +246,6 @@ delete family.mother.husband;
 
 //
 
-<<<<<<< HEAD
-family = null;
-=======
 family = null;
 
 // Ethan O'Connell 6/21/22
@@ -429,4 +426,98 @@ function makeUser() {
 let user = makeUser();
 
 alert (user.ref().name);
->>>>>>> 4-4-object-methods
+
+// Create a calculator
+// importance: 5
+// Create an object calculator with three methods:
+
+// read() prompts for two values and saves them as object properties with names a and b respectively.
+// sum() returns the sum of saved values.
+// mul() multiplies saved values and returns the result.
+// let calculator = {
+//   // ... your code ...
+// };
+
+// calculator.read();
+// alert( calculator.sum() );
+// alert( calculator.mul() );
+
+let calculator = {};
+
+calculator.read = function() {
+    this.a = Number(prompt("Enter in the first value", 0));
+    this.b = Number(prompt("Enter in the second value", 0));
+}
+
+calculator.sum = function() {
+    return this.a + this.b;
+}
+
+calculator.mul = function() {
+    return this.a * this.b;
+}
+
+// let calculator = {
+//     read() {
+//         this.a = Number(prompt("Enter in the first value", 0));
+//         this.b = Number(prompt("Enter in the second value", 0));
+//     },
+
+//     sum() {
+//         return this.a + this.b;       
+//     },
+
+//     mul() {
+//         return this.a * this.b;        
+//     }
+// };
+
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
+
+//
+
+// Chaining
+// importance: 2
+// There’s a ladder object that allows to go up and down:
+
+// let ladder = {
+//   step: 0,
+//   up() {
+//     this.step++;
+//   },
+//   down() {
+//     this.step--;
+//   },
+//   showStep: function() { // shows the current step
+//     alert( this.step );
+//   }
+// };
+// Now, if we need to make several calls in sequence, can do it like this:
+
+// ladder.up();
+// ladder.up();
+// ladder.down();
+// ladder.showStep(); // 1
+// ladder.down();
+// ladder.showStep(); // 0
+// Modify the code of up, down and showStep to make the calls chainable, like this:
+
+// ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+// Such approach is widely used across JavaScript libraries.
+
+let ladder = {
+    step: 0,
+    up() {
+      this.step++;
+      return this;
+    },
+    down() {
+      this.step--;
+      return this;
+    },
+    showStep: function() { // shows the current step
+      alert( this.step );
+    }
+  };
