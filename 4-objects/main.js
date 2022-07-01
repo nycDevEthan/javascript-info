@@ -521,3 +521,215 @@ let ladder = {
       alert( this.step );
     }
   };
+
+// Ethan O'Connell 7/1/22
+// https://javascript.info/constructor-new
+// Example code practice - typed out in VS Studio Code and tested in Chrome console
+
+function User(name) {
+    this.name = name;
+    this.isAdmin = false;
+}
+
+let user = new User("Jack");
+
+alert(user.name); // Jack
+alert(user.isAdmin); // false
+
+// 
+
+let user = {
+    name: "Jack",
+    isAdmin: false
+}
+
+//
+
+let user = new function() {
+    this.name = "John";
+    this.isAdmin = false;
+}
+
+//
+
+function User() {
+    alert(new.target);
+}
+
+User();
+
+new User();
+
+//
+
+function User(name) {
+    if (!new.target) {
+        return new User(name);
+    }
+
+    this.name = name;
+}
+
+let john = User("John");
+alert(john.name);
+
+//
+
+function BigUser() {
+    this.name = "John";
+
+    return { name: "Godzilla" };
+}
+
+alert( new BigUser().name );
+
+function SmallUser() {
+    this.name = "John";
+
+    return;
+}
+
+alert ( new SmallUser().name );
+
+//
+
+let user = new User;
+
+let user = new User();
+
+//
+
+function User(name) {
+    this.name = name;
+
+    this.sayHi = function() {
+        alert( "My name is: " + this.name );
+    };
+}
+
+let john = new User("John");
+
+john.sayHi();
+
+/*
+john = {
+    name: "John",
+    sayHi: function() {
+        alert( "My name is: " + this.name );
+    }
+}
+*/
+
+//
+
+///////
+//Tasks
+///////
+
+// Two functions – one object
+// importance: 2
+// Is it possible to create functions A and B so that new A() == new B()?
+
+// function A() { ... }
+// function B() { ... }
+
+// let a = new A;
+// let b = new B;
+
+// alert( a == b ); // true
+// If it is, then provide an example of their code.
+
+// function A() {
+//     this.sayHi = function() {
+//         alert("This is a method")
+//     }
+// }
+
+// function B() {
+//     this.sayHi = function() {
+//         alert("This is a method")
+//     }
+// }
+
+// let a = new A;
+// let b = new B;
+
+// alert ( a == b ); // false - same function contents - wrong answer
+
+let obj = {};
+
+function A() { return obj };
+function B() { return obj };
+
+alert ( new A() === new B() ); // true - correct answer - returns same externally defined object
+
+// Create new Calculator
+// importance: 5
+// Create a constructor function Calculator that creates objects with 3 methods:
+
+// read() asks for two values using prompt and remembers them in object properties.
+// sum() returns the sum of these properties.
+// mul() returns the multiplication product of these properties.
+// For instance:
+
+// let calculator = new Calculator();
+// calculator.read();
+
+// alert( "Sum=" + calculator.sum() );
+// alert( "Mul=" + calculator.mul() );
+
+function Calculator() {
+    this.read = function() {
+        this.n1 = Number(prompt("Enter the first number", 0));
+        this.n2 = Number(prompt("Enter the second number", 0));
+    }
+
+    this.sum = function() {
+        return this.n1 + this.n2;
+    }
+
+    this.mul = function() {
+        return this.n1 * this.n2;
+    }
+}
+
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
+
+// Create new Accumulator
+// importance: 5
+// Create a constructor function Accumulator(startingValue).
+
+// Object that it creates should:
+
+// Store the “current value” in the property value. The starting value is set to the argument of the constructor startingValue.
+// The read() method should use prompt to read a new number and add it to value.
+// In other words, the value property is the sum of all user-entered values with the initial value startingValue.
+
+// Here’s the demo of the code:
+
+// let accumulator = new Accumulator(1); // initial value 1
+
+// accumulator.read(); // adds the user-entered value
+// accumulator.read(); // adds the user-entered value
+
+// alert(accumulator.value); // shows the sum of these values
+
+function Accumulator(startingValue) {
+
+    this.value = startingValue;
+
+    this.read = function() {
+        this.value += Number(prompt("Enter a value to add to accumulator", 0));
+    }
+}
+
+let accumulator = new Accumulator(1);
+
+accumulator.read();
+accumulator.read();
+
+alert(accumulator.value);
