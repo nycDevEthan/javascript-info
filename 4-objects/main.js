@@ -733,3 +733,206 @@ accumulator.read();
 accumulator.read();
 
 alert(accumulator.value);
+
+// Ethan O'Connell 7/1/22
+// https://javascript.info/optional-chaining
+// Example code practice - typed out in VS Studio Code and tested in Chrome console
+
+let user = {};
+
+alert(user.address.street);
+
+let html = document.querySelector('.elem').innerHTML;
+
+//
+
+let user = {};
+
+alert(user.address ? user.address.street : undefined);
+
+let html = document.querySelector('.elem') ? document.querySelector('.elem').innerHTML : null;
+
+let html = document.querySelector('.elem') ? document.querySelector('.elem').innerHTML : null;
+
+//
+
+let user = {};
+
+alert(user.address ? user.address.street ? user.address.street.name : null : null)
+
+// 
+
+let user = {};
+
+alert ( user.address && user.address.street && user.address.street.name );
+
+let user = {
+    address: {
+        street: "123 nyc ave",
+        city: "NYC",
+        state: "NY"
+    }
+};
+
+alert ( user?.address?.street );
+
+let html = document.querySelector('p')?.innerText;
+
+let user = null;
+
+alert(user?.address);
+alert(user?.address.street);
+
+//
+
+user?.address;
+
+//
+
+let user = null;
+let x = 0;
+
+user?.sayHi(x++);
+
+alert(x);
+
+//
+
+let userAdmin = {
+    admin() {
+        alert("I am admin");
+    }
+};
+
+let userGuest = {};
+
+userAdmin.admin?.();
+
+userGuest.admin?.();
+
+//
+
+let key = "firstName";
+
+let user1 = {
+    firstName: "John"
+}
+
+let user2 = null;
+
+alert ( user1?.[key]);
+alert( user2?.[key]);
+
+delete user1?.firstName;
+
+//
+
+let user = null;
+
+user?.name = "John";
+
+// Ethan O'Connell 7/1/22
+// https://javascript.info/symbol
+// Example code practice - typed out in VS Studio Code and tested in Chrome console
+
+let id = Symbol();
+
+let id = Symbol("id");
+
+let id1 = Symbol("id");
+let id2 = Symbol("id");
+
+alert(id1 == id2);
+
+//
+
+let id = Symbol("id");
+alert(id);
+
+let id = Symbol("id");
+alert(id.toString());
+
+let id = Symbol("id");
+alert(id.description);
+
+//
+
+let user = {
+    name: "John"
+};
+
+let id = Symbol("id");
+
+user[id] = 1;
+
+alert ( user[id] );
+
+
+let id = Symbol("id");
+
+user[id] = "Their id value";
+
+let user = { name: "John" };
+
+user.id = "Our id value";
+
+user.id = "Their id value";
+
+//
+
+let id = Symbol("id");
+
+let user = {
+    name: "John",
+    [id]: 123
+};
+
+//
+
+let id = Symbol("id");
+
+let user = {
+    name: "John",
+    age: 30,
+    [id]: 123
+};
+
+for (let key in user) alert(key);
+
+alert ( "Direct: " + user[id] );
+
+//
+
+let id = Symbol("id");
+
+let user = {
+    [id]: 123
+};
+
+let clone = Object.assign({}, user);
+
+alert ( clone[id] );
+
+//
+
+let id = Symbol.for("id");
+
+let idAgain = Symbol.for("id");
+
+alert ( id === idAgain );
+
+//
+
+let sym = Symbol.for("Name");
+let sym2 = Symbol.for("id");
+
+alert ( Symbol.keyFor(sym) );
+alert ( Symbol.keyFor(sym2) );
+
+let globalSymbol = Symbol.for("Name");
+let localSymbol = Symbol("Name");
+
+alert( Symbol.keyFor(globalSymbol) );
+alert( Symbol.keyFor(localSymbol) );
+
+alert( localSymbol.description );
