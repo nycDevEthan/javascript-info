@@ -831,7 +831,7 @@ let user = null;
 
 user?.name = "John";
 
-// Ethan O'Connell 7/1/22
+// Ethan O'Connell 7/2/22
 // https://javascript.info/symbol
 // Example code practice - typed out in VS Studio Code and tested in Chrome console
 
