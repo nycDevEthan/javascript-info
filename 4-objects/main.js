@@ -936,3 +936,111 @@ alert( Symbol.keyFor(globalSymbol) );
 alert( Symbol.keyFor(localSymbol) );
 
 alert( localSymbol.description );
+
+// Ethan O'Connell 7/3/22
+// https://javascript.info/object-toprimitive
+// Example code practice - typed out in VS Studio Code and tested in Chrome console
+
+// string
+
+let obj = {};
+
+alert(obj);
+
+let anotherObj = {};
+
+anotherObj[obj] = 123;
+
+// number
+
+let num = Number(obj);
+
+let n = +obj;
+let delta = date1 - date2;
+
+let greater = user1 > user2;
+
+// default
+
+let total = obj1 + obj2;
+
+if (user == 1) { ... };
+
+// Symbol.toPrimitive
+
+obj[Symbol.toPrimitive] = function(hint) {
+    //
+}
+
+let user = {
+    name: "John",
+    money: 1000,
+
+    [Symbol.toPrimitive](hint) {
+        alert(`hint: ${hint}`);
+        return hint == "string" ? `{name: "${this.name}"}` : this.money;
+    }
+};
+
+alert(user);
+alert(+user);
+alert(user + 500);
+
+// toString/valueOf
+
+let user = {name: "John"};
+
+alert(user);
+alert(user.valueOf() === user);
+
+//
+
+let user = {
+    name: "John",
+    money: 1000,
+
+    // for hint="string"
+    toString() {
+        return `{name: "${this.name}"}`;
+    },
+
+    // for hint = "number" or "default"
+    valueOf() {
+        return this.money;
+    }
+};
+
+alert(user);
+alert(+user);
+alert(user + 500);
+
+//
+
+let user = {
+    name: "John",
+
+    toString() {
+        return this.name;
+    }
+};
+
+alert(user);
+alert(user + 500);
+
+// Further conversions
+
+let obj = {
+    toString() {
+        return "2";
+    }
+};
+
+alert(obj * 2);
+
+let obj = {
+    toString() {
+        return "2";
+    }
+};
+
+alert(obj + 2);
